@@ -17,18 +17,19 @@ class Chart extends StatelessWidget {
       var totalSum = 0.0;
 
       // for (var tx in recentTransactions) {}
-      for (var i = 0; 1 < recentTransactions.length; i++) {
-        if (DateFormat.yMd().parse(recentTransactions[i].date.toString()) ==
-            DateFormat.yMd().parse(weekDay.toString())) {
+      for (var i = 0; i < recentTransactions.length; i++) {
+        if (DateFormat('yyyy-MM-dd')
+                .parse(recentTransactions[i].date.toString()) ==
+            DateFormat('yyyy-MM-dd').parse(weekDay.toString())) {
           totalSum += recentTransactions[i].amount;
         }
       }
 
-      print(DateFormat.E(weekDay));
+      print(DateFormat.E().format(weekDay));
       print(totalSum);
 
       return {
-        'day': DateFormat.E(weekDay),
+        'day': DateFormat.E().format(weekDay),
         'amount': totalSum,
       };
     });
@@ -36,6 +37,7 @@ class Chart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(groupedTransactionValues);
     return Card(
         elevation: 6,
         margin: EdgeInsets.all(20),
