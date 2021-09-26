@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+import './screens/filters_screen.dart';
 import './screens/category_meal_screen.dart';
 import './screens/categories_screen.dart';
 import './screens/meal_detail_screen.dart';
+import './screens/tabs_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -29,8 +31,10 @@ class MyApp extends StatelessWidget {
       ),
       home: CategoriesScreen(),
       routes: {
+        '/': (ctx) => TabScreen(),
         CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen(),
         MealDetailScreen.routeName: (ctx) => MealDetailScreen(),
+        FilterScreen.routeName: (ctx) => FilterScreen(),
       },
       // onGenerateRoute: (settings) {
       //   print(settings.arguments);
@@ -41,7 +45,7 @@ class MyApp extends StatelessWidget {
       // },
       onUnknownRoute: (settings) {
         return MaterialPageRoute(
-          builder: (ctx) => Text('This page does not existe!'),
+          builder: (ctx) => Text('This page does not exist!'),
         );
       },
     );
