@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-// import 'package:provider/provider.dart';
+import 'package:provider/provider.dart';
 
 import '../widgets/products_grid.dart';
-// import '../providers/products.dart';
+import '../widgets/badge.dart';
+import '../providers/cart.dart';
 
 enum FilterOptions {
   Favorites,
@@ -16,7 +17,7 @@ class ProductsOverview extends StatefulWidget {
 
 class _ProductsOverviewState extends State<ProductsOverview> {
   var _showOnlyFavorites = false;
-  
+
   @override
   Widget build(BuildContext context) {
     // final productsContainer = Provider.of<Products>(context, listen: false);
@@ -34,7 +35,7 @@ class _ProductsOverviewState extends State<ProductsOverview> {
                   // productsContainer.showAll();
                   _showOnlyFavorites = false;
                 }
-              });  
+              });
             },
             icon: Icon(
               Icons.more_vert,
@@ -49,6 +50,16 @@ class _ProductsOverviewState extends State<ProductsOverview> {
                 value: FilterOptions.All,
               ),
             ],
+          ),
+          Consumer<Cart>(
+            builder: (_, cart, ch) => Badge(
+              child: ch!,
+              value: cart.itemCount.toString(),
+            ),
+            child: IconButton(
+              icon: Icon(Icons.shopping_cart),
+              onPressed: () => null,
+            ),
           )
         ],
       ),
