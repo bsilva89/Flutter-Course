@@ -16,17 +16,16 @@ class UserProductsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Your Products'),
-        // actions: [
-        //   IconButton(
-        //     onPressed: () {
-        //       Navigator.of(context)
-        //           .pushReplacementNamed(EditProductScreen.routeName);
-        //     },
-        //     icon: const Icon(
-        //       Icons.add,
-        //     ),
-        //   ),
-        // ],
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed(EditProductScreen.routeName);
+            },
+            icon: const Icon(
+              Icons.add,
+            ),
+          ),
+        ],
       ),
       drawer: AppDrawer(),
       body: Padding(
@@ -38,6 +37,7 @@ class UserProductsScreen extends StatelessWidget {
               UserProductItem(
                 productsData.items[i].title,
                 productsData.items[i].imageUrl,
+                productsData.items[i].id,
               ),
               Divider(),
             ],
