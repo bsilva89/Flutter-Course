@@ -31,9 +31,25 @@ class UserProductItem extends StatelessWidget {
               color: Theme.of(context).primaryColor,
             ),
             IconButton(
-              onPressed: () {
-                Provider.of<Products>(context, listen: false)
-                    .deleteProducts(id);
+              onPressed: () async {
+                try {
+                  await Provider.of<Products>(context, listen: false)
+                      .deleteProducts(id);
+                } catch (error) {
+                  showDialog(
+                    context: context,
+                    builder: (ctx) => AlertDialog(
+                      content: Text(
+                          "Not possible to remove this item at this momment. Try again later."),
+                      actions: [
+                        TextButton(
+                          child: Text("OK"),
+                          onPressed: () => {},
+                        ),
+                      ],
+                    ),
+                  );
+                }
               },
               icon: Icon(Icons.delete),
               color: Theme.of(context).errorColor,
